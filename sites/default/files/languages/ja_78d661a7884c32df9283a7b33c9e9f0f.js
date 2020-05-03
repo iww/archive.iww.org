@@ -1,0 +1,1 @@
+Drupal.locale = { 'pluralFormula': function($n) { return Number(($n!=1)); }, 'strings': { "Delete": "削除", "Published": "公開する", "Promoted to front page": "トップページに表示", "Create new revision": "履歴管理の有効化", "Operations": "オペレーション", "Not published": "非公開" } };

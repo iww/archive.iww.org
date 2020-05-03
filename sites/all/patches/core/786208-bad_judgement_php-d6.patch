@@ -1,0 +1,11 @@
+diff --git a/modules/php/php.info b/modules/php/php.info
+index 558d129..819bc59 100644
+--- a/modules/php/php.info
++++ b/modules/php/php.info
+@@ -1,5 +1,6 @@
+ name = PHP filter
+ description = Allows embedded PHP code/snippets to be evaluated.
+ package = Core - optional
+ version = VERSION
+ core = 6.x
++dependencies[] = bad_judgement

@@ -1,0 +1,68 @@
+<style type="text/css">
+<!--
+/* syndicalist.org Footer Stylesheet Specifications */
+
+BODY	{
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	}
+
+.footbar
+	{
+	width: 100%;
+	background-color: #cc0000;
+	background-image:  url("/images/banners/header.gif");
+	font-size: 12px;
+	color: #f1eeee;
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	text-indent: 10px;
+	text-align: right;
+	font-weight: 600;
+	}
+
+.foottext
+	{
+	font-size: 9px;
+	}
+
+.footbuttonASR
+	{
+	height: 18px;
+	width: 110px;
+	border-width: 1px;
+	border-color: black;
+	border-style: outset;
+	background-color: black;
+	background-image: url("/images/banners/blacknredbrick.jpg");
+	font-face: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	font-variant: small-caps;
+	color: #dddddd;
+	}
+
+.greylink
+	{
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	}
+.greylink
+	a:link {color : #ff9933;
+	}
+.greylink
+	a:hover {color : #ff9933;
+	}
+.greylink
+	a:active {color : #ff9933;
+	}
+.greylink
+	a:visited {color : #ff9933;
+	}
+
+/* Must be recalled using a <P> tag */
+.alert
+	{
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 10px;
+	color: #f1eeee;
+	}
+-->
+</style>

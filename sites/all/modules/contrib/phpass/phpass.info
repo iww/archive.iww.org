@@ -1,0 +1,11 @@
+name = Secure Password Hashes
+description = "Store password hashes securely (using the Drupal 7 hash algorithm)"
+core = 6.x
+php = 5.2.4
+
+; Information added by Drupal.org packaging script on 2014-11-19
+version = "6.x-2.1"
+core = "6.x"
+project = "phpass"
+datestamp = "1416425332"
+

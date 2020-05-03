@@ -1,0 +1,411 @@
+<style type="text/css">
+<!--
+/* SYNDICALISTS.ORG Header Stylesheet Specifications */
+
+BODY	{
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-color: Black;
+	font-size: 10pt;
+	background-color: #f1eeee;
+	}
+
+.header
+	{
+	width: 778px;
+	height: 125px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background color: black;
+	z-index: 0;
+	}
+
+.left
+	{
+	width: 244px;
+	height: 125px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: black;
+	z-index: 1;
+	}
+
+.right
+	{
+	width: 534px;
+	height: 125px;
+	position: absolute;
+	left: 244px;
+	top: 0px;
+	background-color: black;
+	z-index: 1;
+	}
+
+.bar1
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 140px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	vertical-align: middle;
+	color: #dddddd;
+	text-indent: 10px;
+	z-index: 1;
+	}
+.bar1
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar1
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar1
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar1
+	a:visited {color : #dddddd; text-decoration : none; width : 
+100%;
+	}
+
+.bar2
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 165px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	z-index: 1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	text-indent: 10px;
+	vertical-align: middle;
+	color: #dddddd;
+	}
+.bar2
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar2
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar2
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar2
+	a:visited {color : #dddddd; text-decoration : none; width : 100%;
+	}
+
+.bar3
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 190px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	z-index: 1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	text-indent: 10px;
+	vertical-align: middle;
+	color: #dddddd;
+	}
+.bar3
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar3
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar3
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar3
+	a:visited {color : #dddddd; text-decoration : none; width : 100%;
+	}
+
+.bar4
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 215px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	z-index: 1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	text-indent: 10px;
+	vertical-align: middle;
+	color: #dddddd;
+	}
+.bar4
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar4
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar4
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar4
+	a:visited {color : #dddddd; text-decoration : none; width : 100%;
+	}
+
+.bar5
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 240px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	z-index: 1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	text-indent: 10px;
+	vertical-align: middle;
+	color: #dddddd;
+	}
+.bar5
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar5
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar5
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar5
+	a:visited {color : #dddddd; text-decoration : none; width : 100%;
+	}
+
+.bar6
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 265px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	z-index: 1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	text-indent: 10px;
+	vertical-align: middle;
+	color: #dddddd;
+	}
+.bar6
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar6
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar6
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar6
+	a:visited {color : #dddddd; text-decoration : none; width : 100%;
+	}
+
+.bar7
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 290px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	z-index: 1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	text-indent: 10px;
+	vertical-align: middle;
+	color: #dddddd;
+	}
+.bar7
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar7
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar7
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar7
+	a:visited {color : #dddddd; text-decoration : none; width : 100%;
+	}
+
+.bar8
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 315px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	z-index: 1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	text-indent: 10px;
+	vertical-align: middle;
+	color: #dddddd;
+	}
+.bar8
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar8
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar8
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar8
+	a:visited {color : #dddddd; text-decoration : none; width : 100%;
+	}
+
+.bar9
+	{
+	width: 135px;
+	height:	20px;
+	position: absolute;
+	left: 10px;
+	top: 340px;
+	background-color: black;
+	background-image: 
+url("/images/banners/blacknredbrick.jpg");
+	z-index: 1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 17px;
+	font-variant: small-caps;
+	font-weight: 600;
+	text-indent: 10px;
+	vertical-align: middle;
+	color: #dddddd;
+	}
+.bar9
+	a:link {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar9
+	a:hover {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar9
+	a:active {color : #dddddd; text-decoration : none; width : 100%;
+	}
+.bar9
+	a:visited {color : #dddddd; text-decoration : none; width : 100%;
+	}
+
+.barX
+	{
+	width: 135px;
+	height:	135px;
+	position: absolute;
+	left: 10px;
+	top: 365px;
+	background-color: black;
+	z-index: 1;
+	}
+
+.barY
+	{
+	width: 135px;
+	height:	130px;
+	position: absolute;
+	left: 10px;
+	top: 505px;
+	background-color: #aaaaaa;
+	z-index: 1;
+	}
+
+.barZ
+	{
+	width: 135px;
+	height:	112px;
+	position: absolute;
+	left: 10px;
+	top: 640px;
+	background-color: #ff0000;
+	z-index: 1;
+	}
+
+.flag
+	{
+	width: 135px;
+	height:	85px;
+	position: absolute;
+	left: 10px;
+	top: 757px;
+	background-color: #ff0000;
+	z-index: 1;
+	}
+
+.page
+	{
+	width: 778px;
+	position: absolute;
+	left: 0px;
+	top: 125px;
+	background-color: #000000;
+	z-index: 0;
+	}
+
+/* Must be recalled using a <P> tag */
+.main
+	{
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	color: black;
+	}
+.main
+	a:link {color : #cc0000;
+	}
+.main
+	a:hover {color : #cc0000;
+	}
+.main
+	a:active {color : #cc0000;
+	}
+.main
+	a:visited {color : #cc0000;
+	}
+
+-->
+</style>
+
+

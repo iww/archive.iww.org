@@ -1,0 +1,298 @@
+div.container {
+  width: 100%;
+  max-width: 990px;
+}
+@media only screen and (min-width: 990px) {
+  #page {
+    margin-top: 10px;
+    border-radius: 8px 8px 0 0;
+
+  }
+
+  #header {
+      border-radius: 8px 8px 0 0;
+
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 890px) {
+  #header {
+     height: 200px;
+   }
+  #block-block-24 {
+    right: none;
+    left: -40px;
+    top: 158px;
+    width: 290px;
+    margin: 0;
+}
+
+  #block-block-24 ul li{
+    padding: 0;
+    margin: 0;
+    padding-left:4px;
+}
+
+ul.nice-menu li {
+    width: 24%;
+}
+ul.nice-menu ul {
+  top: 2.1em;
+  width: 100%;
+}
+
+ul.nice-menu ul li {
+  width: 100%;
+
+}
+
+ul.nice-menu li.menu-117 {
+  border-right: none;
+
+}
+ul.nice-menu li.menu-9659 {
+  border-left: none;
+
+}
+
+ul.nice-menu li.menu-2501,
+ul.nice-menu li.menu-11370,
+ul.nice-menu li.menu-118,
+ul.nice-menu li.menu-9659 {
+  border-top: none;
+}
+
+#search-box {
+    right: 0;
+    top: 158px;
+}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 599px) {
+  #header {
+     height: 204px;
+  background: #880000 url("../images/header-first.png") repeat;
+
+   }
+  #block-block-24 {
+    top: 60px;
+    position: relative;
+    width: 254px;
+    display: block;
+    margin: 0 auto;
+}
+
+  #block-block-24 ul li{
+    padding: 0;
+    margin: 0;
+    padding-left:4px;
+}
+
+ul.nice-menu li {
+    width: 24%;
+}
+
+#search-box {
+    position: relative;
+    width: 292px;
+    margin: 0 auto;
+    top: 160px;
+}
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+
+   #header #site-name a {
+    background: url("../images/logo_new_small.png") no-repeat scroll 10px 10px transparent;
+    display: block;
+    height: 120px;
+    width: 420px;
+}
+
+#secondary-content ul.menu {
+  text-align: center;
+}
+
+#secondary-content .first ul li {
+    padding-left: 1.3em;
+}
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  #header {
+     height: 100px;
+     margin:0;
+     padding:0;
+   }
+
+   #header #site-name a {
+    background: url("../images/logo_new_smaller.png") no-repeat scroll 0px 10px transparent;
+    display: block;
+    height: 110px;
+    width: 310px;
+    left:0;
+    margin:0;
+    padding:0;
+}
+
+#my-account {
+    display:none;
+}
+
+  #block-block-24 {
+    top: 29px;
+    position: relative;
+    width: 254px;
+    display: block;
+    margin: 0 auto;
+     display:none;
+}
+
+  #block-block-24 ul li{
+    padding: 0;
+    margin: 0;
+    padding-left:4px;
+}
+
+ul.nice-menu li {
+    width: 24%;
+    min-height: 40px;
+}
+.nav ul.nice-menu li a {
+    display: block;
+    padding: 10px 5px 5px;
+    white-space: normal;
+    line-height: 1em;
+}
+
+ul.nice-menu ul {
+  display:none
+}
+
+
+#search-box {
+  display:none;
+/*
+    position: relative;
+    width: 292px;
+    margin: 0 auto;
+    top: 128px;
+*/
+}
+#secondary-content ul.menu {
+  text-align: center;
+}
+#secondary-content ul li {
+    font-size: 1.1428em;
+    padding: 0;
+}
+#secondary-content ul li a {
+    margin: 0;
+    padding: 2px;
+}
+#secondary-content .first ul li {
+    padding-left: 1.3em;
+}
+
+}
+
+
+
+
+
+@media only screen and (min-width: 480px) and (max-width: 700px) {
+
+#sidebar-first .block {
+    clear: none;
+    float: left;
+    width: 45%;
+}
+
+#sidebar-first  #block-views-calendar-calendar_block_1.block {
+    max-width:280px;
+    margin: 15px auto;
+    clear:both;
+    float:none;
+  }
+
+
+}
+
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+
+  #sidebar-first {
+    width: 100%;
+    margin: 0;
+  }
+  #sidebar-last {
+    width: 100%;
+    margin:0;
+  }
+
+  .sidebar-first .content-inner {
+    margin-left: 0;
+  }
+
+  .two-sidebars .content-inner {
+    margin: 0;
+  }
+
+
+#footer .block {
+  clear: left;
+  width: 90%;
+}
+
+  #block-views-calendar-calendar_block_1 {
+    max-width:280px;
+    margin: 15px auto;
+  }
+
+  ul.nice-menu li.menu-117 {
+  border-right: none;
+
+}
+ul.nice-menu li.menu-9659 {
+  border-left: none;
+
+}
+
+ul.nice-menu li.menu-2501,
+ul.nice-menu li.menu-11370,
+ul.nice-menu li.menu-118,
+ul.nice-menu li.menu-9659 {
+  border-top: none;
+}
+
+
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+#admin-menu {
+  display: none;
+}
+body.admin-menu {
+  margin-top:0;
+}
+
+  #content-column .article img,
+   .article p img {
+    max-width:80%;
+    height: auto;
+    float: none;
+    margin:1em auto;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  #page {
+    border: none;
+  }
+}
+
+
+
+

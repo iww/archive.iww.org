@@ -1,0 +1,238 @@
+<?php
+// $Id: relatedlinks.install,v 1.19.6.5 2010/12/01 20:41:18 karthik Exp $
+
+/**
+ * @file
+ * Installation and uninstallation scripts for the relatedlinks module.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function relatedlinks_install() {
+  if (!module_exists('taxonomy') && !module_exists('search')) {
+    drupal_set_message(t('The discovered links feature of the relatedlinks module requires one of the following modules:
+<ul>
+  <li>Taxonomy</li>
+  <li>Search</li>
+</ul>'));
+    return;
+  }
+
+  drupal_install_schema('relatedlinks');
+
+  $t = get_t();
+  drupal_set_message($t('Relatedlinks module: Installation script complete.'));
+}
+
+/**
+ * Implementation of hook_schema().
+ */
+function relatedlinks_schema() {
+  $schema['relatedlinks'] = array(
+    'description' => 'Relatedlinks module: store manual, parsed and discovered links.',
+    'fields' => array(
+      'lid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Link ID'
+      ),
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Node ID'
+      ),
+      'url' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Link URL'
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => NULL,
+        'description' => 'Link title'
+      ),
+      'type' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 1,
+        'description' => 'Link type: Parsed, manual or discovered'
+      )
+    ),
+    'indexes' => array(
+      'nid' => array('nid'),
+      'nid_type' => array('nid', 'type')
+    ),
+    'primary key' => array('lid')
+  );
+
+  $schema['relatedlinks_tracker'] = array(
+    'description' => 'Table keeping track of discovered links.',
+    'fields' => array(
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The related node ID'
+      ),
+      'keywords' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'description' => 'Keywords to aid discovered links'
+      ),
+      'updated' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Last updated time'
+      )
+    ),
+    'indexes' => array('updated' => array('updated')),
+    'primary key' => array('nid')
+  );
+
+  return $schema;
+}
+
+/**
+ * Implementation of hook_requirements.
+ */
+function relatedlinks_requirements() {
+  $requirements = array();
+
+  if (!module_exists('taxonomy') && !module_exists('search')) {
+    $t = get_t();
+
+    $requirements['relatedlinks'] = array(
+      'title' => $t('Relatedlinks'),
+      'value' => $t('The discovered links feature of the relatedlinks module requires one of either Search or Taxonomy modules to be enabled.'),
+      'severity' => REQUIREMENT_INFO
+    );
+  }
+
+  return $requirements;
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function relatedlinks_uninstall() {
+  variable_del('relatedlinks_types');
+  variable_del('relatedlinks_node_types');
+  variable_del('relatedlinks_discovered');
+
+  drupal_uninstall_schema('relatedlinks');
+
+  $t = get_t();
+  drupal_set_message($t('Relatedlinks module: Uninstallation script complete.'));
+}
+
+/**
+ * Convert existing variables from strings to internal constants used in the
+ * module.
+ */
+function relatedlinks_update_2() {
+  define('RELATEDLINKS_PARSED', 1);
+  define('RELATEDLINKS_MANUAL', 2);
+  // RELATEDLINKS_TAXONOMY is now named RELATEDLINKS_DISCOVERED.
+  define('RELATEDLINKS_TAXONOMY', 3);
+
+  $types = variable_get('relatedlinks_types', array());
+  $types_converted = array();
+  $i = 1;
+  foreach ($types as $type) {
+    $name = $type == 'taxonomy'? 'Discovered links' : ucfirst($type) .' links';
+    $types_converted[constant('RELATEDLINKS_'. strtoupper($type))] = array(
+      'name' => ucfirst($type) .' links',
+      'enabled' => TRUE,
+      'block' => TRUE,
+      'title' => ucfirst($type) .' links',
+      'max' => 5,
+      'weight' => $i++
+    );
+  }
+
+  variable_set('relatedlinks_types', $types_converted);
+
+  return array();
+}
+
+/**
+ * Convert table to hold links as url, title.
+ */
+function relatedlinks_update_3() {
+  $ret = array();
+
+  switch ($GLOBALS['db_type']) {
+    case 'mysqli':
+    case 'mysql':
+      $ret[] = update_sql("ALTER TABLE {relatedlinks} ADD lid int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
+      $ret[] = update_sql("ALTER TABLE {relatedlinks} CHANGE link url varchar(255) NOT NULL default ''");
+      $ret[] = update_sql("ALTER TABLE {relatedlinks} ADD title varchar(255) DEFAULT NULL AFTER url");
+      // nid and type are UNSIGNED fields.
+      $ret[] = update_sql("ALTER TABLE {relatedlinks} CHANGE nid nid int(11) UNSIGNED NOT NULL DEFAULT 0");
+      $ret[] = update_sql("ALTER TABLE {relatedlinks} CHANGE type type tinyint(4) UNSIGNED NOT NULL DEFAULT 1");
+      $ret[] = update_sql("ALTER TABLE {relatedlinks} ADD INDEX nid_type (nid, type)");
+      break;
+    case 'pgsql':
+      // Needs testing. Field ordering needs to be added.
+      db_add_column($ret, 'relatedlinks', 'lid', 'serial');
+      db_change_column($ret, 'relatedlinks', 'link', 'url', 'varchar(255)', array('default' => "''", 'not null' => TRUE));
+      db_add_column($ret, 'relatedlinks', 'title', 'varchar(255)', array('default' => "NULL"));
+      $ret[] = update_sql("CREATE INDEX {relatedlinks}_nid_type_idx ON {relatedlinks}(nid, type)");
+      break;
+  }
+
+  $result = db_query("SELECT * FROM {relatedlinks}");
+  while ($link = db_fetch_array($result)) {
+    preg_match("!<\s*a\s*href\s*=\s*(?:\"([^\">]+)\"[^>]*|([^\" >]+?)[^>]*)>(.*)\s*<\s*/\s*a\s*>!Uis", $link['url'], $matches);
+    if (count($matches[1])) {
+      // Using db_query instead of update_sql to ease validation.
+      db_query("UPDATE {relatedlinks} SET url = '%s', title = '%s' WHERE lid = %d", $matches[1], trim($matches[3]), $link['lid']);
+    }
+  }
+
+  return $ret;
+}
+
+/**
+ * Add relatedlinks_tracker table and initialise with existing relatedlink nids.
+ */
+function relatedlinks_update_4() {
+  $ret = array();
+
+  switch ($GLOBALS['db_type']) {
+    case 'mysqli':
+    case 'mysql':
+      $ret[] = update_sql("CREATE TABLE {relatedlinks_tracker} (
+        nid int(11) UNSIGNED NOT NULL,
+        keywords varchar(255) NULL,
+        updated int(11) NOT NULL default 0,
+        PRIMARY KEY (nid),
+        KEY (updated))
+        COMMENT = 'Table keeping track of discovered links.'
+        /*!40100 default CHARACTER SET utf8 */"
+      );
+      break;
+    case 'pgsql':
+      $ret[] = update_sql("CREATE TABLE {relatedlinks_tracker} (
+        nid integer NOT NULL default 0,
+        keywords varchar(255) NULL,
+        updated integer NOT NULL default 0
+        PRIMARY KEY (nid))"
+      );
+      $ret[] = update_sql("CREATE INDEX {relatedlinks_tracker}_updated_idx ON {relatedlinks_tracker}(updated)");
+  }
+
+  $ret[] = update_sql("INSERT INTO {relatedlinks_tracker} (nid) SELECT DISTINCT(nid) FROM {relatedlinks}");
+
+  return $ret;
+}

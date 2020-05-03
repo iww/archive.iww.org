@@ -1,0 +1,1 @@
+Drupal.locale = { 'pluralFormula': function($n) { return Number(($n!=1)); }, 'strings': { "Delete": "Törlés", "Published": "Közzétett", "Promoted to front page": "Címlapra kerül", "Create new revision": "Új verzió készítése", "Operations": "Műveletek", "Not published": "Elrejtve", "1 attachment": "1 csatolás" } };

@@ -1,0 +1,26 @@
+diff --git a/phpass.module b/phpass.module
+index 335d215..f071610 100644
+--- a/phpass.module
++++ b/phpass.module
+@@ -15,6 +15,21 @@ function phpass_user($op, &$edit, &$account, $category = NULL) {
+       // Catch password changes and update the password hash.
+       if (!empty($edit['pass'])) {
+         phpass_user_rehash_password($account, $edit['pass']);
++
++        // If the password changed, delete all open sessions and recreate
++        // the current one. The following code is copied from user.module
++        if (is_object($account) && $account->uid) {
++          sess_destroy_uid($account->uid);
++          if ($account->uid == $GLOBALS['user']->uid) {
++            if (function_exists('drupal_session_regenerate')) {
++              // Support for Pressflow.
++              drupal_session_regenerate();
++            }
++            else {
++              sess_regenerate();
++            }
++          }
++        }
+       }
+       // Prevent the md5 from being saved on update.
+       $edit['pass'] = NULL;

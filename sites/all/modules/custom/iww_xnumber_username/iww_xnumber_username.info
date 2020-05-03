@@ -1,0 +1,5 @@
+name = X-Number Username
+description = Substitutes X-Number for username and validates it
+core = 6.x
+package = "IWW"
+

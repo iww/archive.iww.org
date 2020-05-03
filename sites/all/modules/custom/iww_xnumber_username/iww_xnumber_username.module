@@ -1,0 +1,100 @@
+<?php
+
+define('IWW_XNUMBER_REGEXP', '/^x[0-9]{6}$/');
+
+/**
+ * Implements hook_perm().
+ */
+function iww_xnumber_username_perm(){
+  return array('bypass xnumber validation for usernames');
+}
+
+/**
+ * Implements hook_user().
+ */
+function iww_xnumber_username_user($op, &$edit, &$account, $category = NULL) {
+  if ($op !== 'validate' || !isset($edit['name']) || user_access('bypass xnumber validation for usernames')) {
+    return;
+  }
+
+  $edit['name'] = strtolower($edit['name']);
+
+  if (iww_xnumber_username_is_valid($edit['name'])) {
+    return;
+  }
+
+  form_set_error('name', t('%name is not a valid xnumber.', array(
+    '%name' => $edit['name']
+  )));
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function iww_xnumber_username_form_alter(&$form, &$form_state, $form_id) {
+  if (!in_array($form_id, array('user_register', 'user_profile_form'))) {
+    return;
+  }
+
+  $form['account']['name']['#title'] = t('xnumber');
+  $form['account']['name']['#description'] = t('This must be your membership number.');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Form ID: user_pass.
+ */
+function iww_xnumber_username_form_user_pass_alter(&$form, &$form_state) {
+  $form['name']['#title'] = t('Xnumber or e-mail address');
+}
+
+/**
+ * Whether or not the given string is a valid X-Number.
+ *
+ * @return boolean
+ */
+function iww_xnumber_username_is_valid($xnumber) {
+  return is_string($xnumber) && preg_match(IWW_XNUMBER_REGEXP, $xnumber) === 1;
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function iww_xnumber_username_theme_registry_alter(&$theme_registry) {
+  if (!empty($theme_registry['lt_username_title'])) {
+    $theme_registry['lt_username_title']['function'] = '_iww_xnumber_username_lt_username_title';
+  }
+  if (!empty($theme_registry['lt_username_description'])) {
+    $theme_registry['lt_username_description']['function'] = '_iww_xnumber_username_lt_username_description';
+  }
+}
+
+/**
+ * Overrides theme_lt_username_title() from logintoboggan.
+ */
+function _iww_xnumber_username_lt_username_title($form_id) {
+  switch ($form_id) {
+    case 'user_login':
+      return t('Xnumber or e-mail address');
+      break;
+
+    case 'user_login_block':
+      return t('Xnumber or e-mail');
+      break;
+  }
+}
+
+/**
+ * Overrides theme_lt_username_description() from logintoboggan.
+ */
+function _iww_xnumber_username_lt_username_description($form_id) {
+  switch ($form_id) {
+    case 'user_login':
+      return t('You may login with either your xnumber or your e-mail address.');
+      break;
+    case 'user_login_block':
+      return '';
+      break;
+  }
+}

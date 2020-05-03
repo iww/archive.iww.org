@@ -1,0 +1,7 @@
+/* adaptivethemes.com */
+
+.at-panel div.block,.at-panel div.panel-pane{padding:0 10px;}
+.at-panel{clear:both;}
+.at-panel .panel-panel{display:inline;position:relative;float:left;}
+.fourcol-4x25 .panel-panel{width:25%;}
+.fourcol-4x25 .panel-col-four{width:24.5%;}

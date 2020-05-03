@@ -1,0 +1,5 @@
+name = "Account Approval"
+description = "Provides a custom role and page for user to approve accounts"
+core = 6.x
+package = "IWW"
+

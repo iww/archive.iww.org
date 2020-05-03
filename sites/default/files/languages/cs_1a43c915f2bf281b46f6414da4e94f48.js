@@ -1,0 +1,1 @@
+Drupal.locale = { 'pluralFormula': function($n) { return Number(($n!=1)); }, 'strings': { "Delete": "Smazat", "Published": "Vydáno", "Promoted to front page": "Zobrazit na titulní stránce", "Create new revision": "Vytvořit novou verzi", "Operations": "Operace", "1 attachment": "1 příloha" } };

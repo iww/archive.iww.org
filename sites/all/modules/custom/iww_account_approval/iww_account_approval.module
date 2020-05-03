@@ -1,0 +1,198 @@
+<?php
+
+/**
+ * @file
+ * Main module file for iww_account_approval.
+ */
+
+/**
+ * Implements hook_perm().
+ */
+function iww_account_approval_perm() {
+  return array('approve user accounts');
+}
+
+/**
+ * Implements hook_menu().
+ */
+function iww_account_approval_menu() {
+  $items['admin/user/approve'] = array(
+    'title' => 'Approve pending accounts',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('iww_account_approval_approval_form'),
+    'access callback' => 'user_access',
+    'access arguments' => array('approve user accounts'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/user/approve/list'] = array(
+    'title' => 'List',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['admin/user/approve/settings'] = array(
+    'title' => 'Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('iww_account_approval_settings_form'),
+    'access callback' => 'user_access',
+    'access arguments' => array('approve user accounts'),
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function iww_account_approval_theme() {
+  $theme['iww_account_approval_approval_form'] = array(
+    'arguments' => array('form' => NULL),
+  );
+
+  return $theme;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function iww_account_approval_form_user_register_alter(&$form, &$form_state) {
+  $form['#submit'][] = 'iww_account_approval_notify_additional';
+}
+
+/**
+ * Custom submit function for the user registration form.
+ */
+function iww_account_approval_notify_additional($form, $form_state) {
+  if (!user_access('administer users')) {
+    $emails = variable_get('iww_account_approval_emails', '');
+    $emails = explode(',', $emails);
+    foreach ($emails as $email) {
+      drupal_mail('user', 'register_pending_approval_admin', trim($email), language_default(), array('account' => $form_state['user']));
+    }
+  }
+}
+
+/**
+ * Form builder callback for our approval form.
+ */
+function iww_account_approval_approval_form() {
+  $sql = 'SELECT uid FROM {users} AS u WHERE status = 0 AND access = 0 AND uid <> 0';
+  $sql .= tablesort_sql(_iww_account_approval_get_header());
+  $result = db_query($sql);
+
+  $accounts = array();
+  while ($row = db_fetch_object($result)) {
+    $account = user_load($row->uid);
+    $accounts[$account->uid] = '';
+    $form['xnumber'][$account->uid] = array('#value' => $account->name);
+    $form['name'][$account->uid] = array('#value' => theme('username', $account));
+    $form['fullname'][$account->uid] = array('#value' => t('@first @last', array('@first' => $account->profile_first_name, '@last' => $account->profile_last_name)));
+    $form['locale'][$account->uid] = array('#value' => t('@city, @state', array('@city' => $account->profile_city, '@state' => $account->profile_state_or_province)));
+    $form['created'][$account->uid] = array('#value' => format_interval(REQUEST_TIME - $account->created));
+  }
+  $form['accounts'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $accounts
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Approve selected accounts'),
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for the approval form.
+ */
+function iww_account_approval_approval_form_submit($form, &$form_state) {
+  $accounts = array_filter($form_state['values']['accounts']);
+  $success = $fail = array();
+
+  foreach ($accounts as $uid) {
+    $account = user_load($uid);
+    if (user_save($account, array('status' => TRUE))) {
+      $success[] = $account;
+    }
+    else {
+      $fail[] = $account;
+    }
+  }
+
+  if (!empty($success)) {
+    drupal_set_message(t('The following user accounts were approved: !list', array(
+      '!list' => theme('item_list', array_map(function($account) {
+        return theme('username', $account);
+      }, $success))
+    )));
+  }
+
+  if (!empty($fail)) {
+    drupal_set_message(t('An error occurred while approving the following user accounts: !list', array(
+      '!list' => theme('item_list', array_map(function($account) {
+        return theme('username', $account);
+      }, $fail))
+    )), 'error');
+  }
+}
+
+/**
+ * Theme the approval form.
+ *
+ * @ingroup themeable
+ */
+function theme_iww_account_approval_approval_form($form) {
+  $output = drupal_render($form['options']);
+  if (isset($form['name']) && is_array($form['name'])) {
+    foreach (element_children($form['name']) as $key) {
+      $rows[] = array(
+        drupal_render($form['accounts'][$key]),
+        drupal_render($form['xnumber'][$key]),
+        drupal_render($form['name'][$key]),
+        drupal_render($form['fullname'][$key]),
+        drupal_render($form['locale'][$key]),
+        drupal_render($form['created'][$key]),
+      );
+    }
+  }
+  else {
+    $rows[] = array(array('data' => t('No users available.'), 'colspan' => '7'));
+  }
+
+  $output .= theme('table', _iww_account_approval_get_header(), $rows);
+  $output .= drupal_render($form);
+
+  return $output;
+}
+
+/**
+ * Form builder for the iww_account_approval settings page.
+ */
+function iww_account_approval_settings_form() {
+  $form['iww_account_approval_emails'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Additional new account notifications'),
+    '#description' => t('In addition to the main admin e-mail (@site_email), each e-mail adress in this list will be notified when new accounts are created. E-mail addresses should be comma-seperated.', array(
+      '@site_email' => variable_get('site_mail', ''),
+    )),
+    '#default_value' => variable_get('iww_account_approval_emails', ''),
+  );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Helper function to get the header for our approval form table.
+ *
+ * @return array
+ */
+function _iww_account_approval_get_header() {
+  return array(
+    theme('table_select_header_cell'),
+    array('data' => t('X Number'), 'field' => 'u.name'),
+    t('Display name'),
+    t('Name'),
+    t('City/State'),
+    array('data' => t('Created date'), 'field' => 'u.created', 'sort' => 'desc'),
+  );
+}

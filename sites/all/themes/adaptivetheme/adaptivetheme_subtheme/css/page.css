@@ -1,0 +1,300 @@
+body {
+  background-color: #f1eeee;
+  font-family: 'Lucida Grande', Verdana, Geneva, Arial, Sans-Serif;
+}
+
+#page {
+	background: #fff url(../images/bodycolor-firefox.gif) no-repeat scroll 50% 100px;
+}
+
+#content-content   {
+	 font-size: 110%;
+}
+
+a {
+  color: #cc0000;
+}
+#ops-wrapper, ul#ops-list {clear: both;}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color:#990000;
+}
+
+	h1 {
+		font-size: 1.6em;
+		margin:0 10px;
+	}
+
+	h2 {
+		font-size: 1.4em;
+	}
+
+	h3, h4, h5, h6 {
+		font-size: 1.2em;
+	}
+
+p {
+padding:.8em 0;
+}
+
+ul, ol {
+  padding-top: 0;
+  padding-bottom:0;
+  margin:0;
+}
+.node h2 a{
+  font-weight:bold;
+}
+.node .content li {
+font-size:90%;
+margin-left:8px;
+padding-bottom:8px;
+voice-family:inherit;
+}
+
+.node .content strong {
+	font-size:105%;
+}
+
+.terms-inline {
+	margin-left: 8px;
+}
+div.help {
+	margin-left:10px;
+	}
+
+HR {
+  height:1px;
+  _height:3px;
+  width:45%;
+  background:#990000;
+  margin:25px auto;
+  text-align:center;
+  border:none;
+}
+
+#header {
+  height:185px;
+background: url("http://www.iww.org/sites/all/themes/acquia_slate/images/header-first.png") repeat scroll left top #880000
+}
+
+	#header  h1#site-name a{
+	  background: url(../images/logo_new.png) 10px 10px no-repeat scroll;
+	  display:block;
+	  height:160px;
+	  line-height:90px;
+	  position:absolute;
+	  top:-4px;
+	  width:550px;
+	  text-align: left;
+	  text-indent:-9999em;
+	}
+
+#wrapper, #footer{
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+#my-account a {
+  color:#eee;
+}
+
+#footer {
+  padding: 0 0 10px 0;
+
+}
+#footer .block h2 {
+  font-size: 1.5em;
+}
+
+	#footer #bottom-blocks {
+		border-left:1px solid #999;
+		border-right:1px solid #999;
+		 border-bottom:1px solid #999;
+	}
+
+		#footer .block {
+		  border-right: 1px solid #999;
+		  padding-right: 10px;
+		  min-height:235px;
+		  height:auto !important;
+		  height:235px;
+		  width:126px;
+		  padding-top:10px;
+		}
+
+			#footer #block-block-12 {
+			margin-left:0;
+			padding-left: 15px;
+			width: 200px;
+			}
+
+			#footer #block-block-6 {
+			border-right:none;
+			}
+
+#search-box #edit-search-theme-form-1 {
+	background-color:#DDCC7A;
+	color:#000;
+	border: 1px solid #333;
+	font-size:12px;
+	font-weight:bolder;
+	height:20px;
+	width:240px;
+	margin-left:0;
+	margin-top:0;
+	padding-top:3px;
+  vertical-align:middle;
+}
+
+#search-box .form-submit {
+background:transparent url(../images/cat.gif) no-repeat center;
+border:none;
+cursor:pointer;
+font-size:0pt;
+height:45px;
+width:40px;
+
+margin:0;
+vertical-align:middle;
+}
+
+#search-box {
+  top: 32px;
+  margin-right: 10px;
+}
+#block-block-24 {
+  position:absolute;
+  top:80px;
+  right: 8px;
+}
+#block-block-24 ul li {
+    float: left;
+    font-size: 1.1428em;
+    padding: 7px 5px;
+    text-align: right;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+#block-block-24 ul li {
+    font-weight: normal;
+    line-height: 1.4285em;
+    list-style: none outside none;
+    margin: 0.1em 0 0.2em;
+    padding-left: 8px;
+    text-decoration: none;
+}
+
+#mission {
+  height: 20px;
+  background-color: #ccc;
+  padding: 4px 10px 2px;
+  font-size:80%;
+  font-weight:bold;
+ }
+
+ #block-menu-secondary-links {
+   position: absolute;
+   right: 8px;
+   top:125px;
+ }
+
+  #block-menu-secondary-links li{
+float:left;
+list-style-type: none;
+list-style-image: none;
+ }
+ #block-menu-secondary-links li a {
+   color: #999;
+   font-weight:bold;
+   font-size: 1.1em;
+ }
+
+body.user-section #container .column {
+	overflow:visible;
+}
+
+ /*** IWW Styles ***/
+
+ .graybar {
+	background:transparent url(../images/headergrey.gif) repeat scroll 0 0;
+	border-color:#330000 #660000 #660000 #330000;
+	border-style:solid;
+	border-width:1px;
+	color:#FFFFFF;
+	display:block;
+	font-size:15px;
+	font-weight:600;
+	margin-bottom:5px;
+	padding:2px;
+	text-indent:10px;
+	width:95%;
+}
+.redbar, .full-book #page-title {
+	background:transparent url(../images/header.gif) no-repeat scroll right top;
+	border-color:#330000 #660000 #660000 #330000;
+	border-style:solid;
+	border-width:1px;
+	color:#F1EEEE;
+	display:block;
+	font-weight:600;
+	padding:2px 2px 2px 10px;
+}
+.blackbar {
+	background:transparent url(../images/headerblk.gif) no-repeat scroll right top;
+	border-color:#333333 #444444 #444444 #333333;
+	border-style:solid;
+	border-width:1px;
+	color:#F1EEEE;
+	display:block;
+	font-weight:600;
+	padding:2px 2px 2px 10px;
+}
+.graybarnarrow {
+	background:transparent url(../images/headergrey.gif) repeat scroll 0 0;
+	border-color:#330000 #660000 #660000 #330000;
+	border-style:solid;
+	border-width:1px;
+	color:#FFFFFF;
+	display:block;
+	font-family:Verdana,Geneva,Helvetica,Arial;
+	font-size:15px;
+	font-weight:600;
+	margin-bottom:5px;
+	padding:2px;
+	text-indent:10px;
+	width:95%;
+}
+.redbarnarrow {
+	background:transparent url(../images/header.gif) no-repeat scroll right top;
+	border-color:#330000 #660000 #660000 #330000;
+	border-style:solid;
+	border-width:1px;
+	color:#F1EEEE;
+	display:block;
+	font-weight:600;
+	padding:2px 2px 2px 10px;
+	width:400px;
+}
+.blackbarnarrow {
+	background:transparent url(../images/headerblk.gif) no-repeat scroll right top;
+	border-color:#333333 #444444 #444444 #333333;
+	border-style:solid;
+	border-width:1px;
+	color:#F1EEEE;
+	display:block;
+	font-weight:600;
+	padding:2px 2px 2px 10px;
+	width:400px;
+}
+
+#block-ddblock-2 > h2 {
+	background:transparent url(../images/header.gif) no-repeat scroll right top;
+	padding:2px 2px 2px 10px;
+	width:638px;
+	color: #fff;
+	border-style: solid;
+  border-width: 2px 2px 0 2px;
+  border-color: #000;
+  font-size: 2em;
+}

@@ -1,0 +1,41 @@
+<style type="text/css">
+<!--
+/* syndicalist.org Footer Stylesheet Specifications */
+
+BODY	{
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	}
+
+.bread
+	{
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 9px;
+	text-align: right;
+	}
+
+.blackbar
+	{
+	width: 100%;
+	background-color: #000000;
+	background-image: url("/images/banners/headerblack.gif");
+	font-size: 15px;
+	font-weight: 600;
+	color: #f1eeee;
+	font-family: Helvetica, Arial;
+	text-indent: 10px;
+	}
+
+.redbar
+	{
+	width: 100%;
+	background-color: #cc0000;
+	background-image: url("/images/banners/header.gif");
+	font-size: 15px;
+	font-weight: 600;
+	color: #f1eeee;
+	font-family: Helvetica, Arial;
+	text-indent: 10px;
+	}
+
+-->
+</style>

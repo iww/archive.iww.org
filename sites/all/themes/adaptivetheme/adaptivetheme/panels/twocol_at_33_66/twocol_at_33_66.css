@@ -1,0 +1,7 @@
+/* adaptivethemes.com */
+
+.at-panel div.block,.at-panel div.panel-pane{padding:0 10px;}
+.at-panel{clear:both;}
+.at-panel .panel-panel{display:inline;position:relative;float:left;}
+.twocol-at-33-66 .panel-col-first{width:33.333%;}
+.twocol-at-33-66 .panel-col-last{width:66.333%;}

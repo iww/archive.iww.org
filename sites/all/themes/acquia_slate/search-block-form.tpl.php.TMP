@@ -1,0 +1,25 @@
+
+
+<div class="form-search">
+<?php //    * Remove "Search this site: "  *    ////
+ /* $search["search_block_form"]= str_replace("Search this site: ", "", $search["search_block_form"]);
+
+  //    * "Search" button with "Go!" *      ////
+  //$search["submit"]=str_replace('value="Search"', 'value="GO"', $search["submit"]);
+
+  print $search["search_block_form"];
+  print $search["submit"];
+  print $search["hidden"];*/
+?>
+</div>
+   
+            <form id="search_mini_form" action="/en/search/node" accept-charset="UTF-8" method="post" id="search-block-form">
+    <div class="form-search">
+        <label for="search">Search:</label>
+
+        <input id="search" type="text" name="q" value="" class="input-text" />
+        <button type="submit" title="Search" class="button"><span><span>Search</span></span></button>
+
+    </div>
+</form>
+

@@ -1,0 +1,1 @@
+Drupal.locale = { 'pluralFormula': function($n) { return Number((($n==1)?(0):((((($n%10)>=2)&&(($n%10)<=4))&&((($n%100)<10)||(($n%100)>=20)))?(1):2))); }, 'strings': { "Published": "Opublikowany", "Promoted to front page": "Na stronie głównej", "Create new revision": "Stwórz nową wersję", "Operations": "Działania", "Delete": "Usuń", "hide": "ukryj", "show": "pokaż" } };
