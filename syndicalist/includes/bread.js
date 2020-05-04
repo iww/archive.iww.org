@@ -17,7 +17,7 @@ var m=location.toString(),h="";
 m=m.substring(m.indexOf("/")+1);
 m=m.split("/");
 var howmany=spawn("../",m.length,true);
-howmany[m.length]="index.shtml";
+howmany[m.length]="index.html";
 for(i=1;i<m.length-1;i++){
 h+=("<a href="+howmany[i+2]+">"+unescape( m[i]+"</a>"+divider))
 }
