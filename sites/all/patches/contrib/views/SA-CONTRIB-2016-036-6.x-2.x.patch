@@ -1,0 +1,98 @@
+diff --git a/modules/statistics.views.inc b/modules/statistics.views.inc
+index 2148f8b..9f2514c 100644
+--- a/modules/statistics.views.inc
++++ b/modules/statistics.views.inc
+@@ -36,7 +36,7 @@ function statistics_views_data() {
+     'help' => t('The total number of times the node has been viewed.'),
+ 
+     'field' => array(
+-      'handler' => 'views_handler_field_numeric',
++      'handler' => 'views_handler_field_statistics_numeric',
+       'click sortable' => TRUE,
+      ),
+     'filter' => array(
+@@ -53,7 +53,7 @@ function statistics_views_data() {
+     'help' => t('The total number of times the node has been viewed today.'),
+ 
+     'field' => array(
+-      'handler' => 'views_handler_field_numeric',
++      'handler' => 'views_handler_field_statistics_numeric',
+       'click sortable' => TRUE,
+      ),
+     'filter' => array(
+@@ -70,7 +70,7 @@ function statistics_views_data() {
+     'help' => t('The most recent time the node has been viewed.'),
+ 
+     'field' => array(
+-      'handler' => 'views_handler_field_date',
++      'handler' => 'views_handler_field_node_counter_timestamp',
+       'click sortable' => TRUE,
+     ),
+     'filter' => array(
+@@ -258,6 +258,12 @@ function statistics_views_handlers() {
+       'views_handler_field_accesslog_path' => array(
+         'parent' => 'views_handler_field',
+       ),
++      'views_handler_field_statistics_numeric' => array(
++        'parent' => 'views_handler_field_numeric',
++      ),
++      'views_handler_field_node_counter_timestamp' => array(
++        'parent' => 'views_handler_field_date',
++      ),
+     ),
+   );
+ }
+diff --git a/modules/statistics/views_handler_field_node_counter_timestamp.inc b/modules/statistics/views_handler_field_node_counter_timestamp.inc
+new file mode 100644
+index 0000000..d665519
+--- /dev/null
++++ b/modules/statistics/views_handler_field_node_counter_timestamp.inc
+@@ -0,0 +1,21 @@
++<?php
++
++/**
++ * @file
++ * Definition of views_handler_field_node_counter_timestamp.
++ */
++
++/**
++ * Field handler to present the most recent time the node has been viewed.
++ *
++ * @ingroup views_field_handlers
++ */
++class views_handler_field_node_counter_timestamp extends views_handler_field_date {
++  /**
++   * {@inheritdoc}
++   */
++  public function access() {
++    // Needs permission to see total page views.
++    return user_access('view post access counter');
++  }
++}
+diff --git a/modules/statistics/views_handler_field_statistics_numeric.inc b/modules/statistics/views_handler_field_statistics_numeric.inc
+new file mode 100644
+index 0000000..3e60c8d
+--- /dev/null
++++ b/modules/statistics/views_handler_field_statistics_numeric.inc
+@@ -0,0 +1,21 @@
++<?php
++
++/**
++ * @file
++ * Definition of views_handler_field_statistics_numeric.
++ */
++
++/**
++ * Field handler to present numeric values from the statistics module.
++ *
++ * @ingroup views_field_handlers
++ */
++class views_handler_field_statistics_numeric extends views_handler_field_numeric {
++  /**
++   * {@inheritdoc}
++   */
++  public function access() {
++    // Needs permission to see total page views.
++    return user_access('view post access counter');
++  }
++}
